@@ -1,9 +1,9 @@
-const Service  = require("./recipes.service")
+const Service = require("./recipes.service")
 
 
-const addRecipesToDataBase = async(req,res)=>{
+const addRecipesToDataBase = async (req, res) => {
     try {
-        const data = await Service.addRecipes()
+        const data = await Service.addRecipesToDataBase()
         res.send(data)
     } catch (error) {
         res.send(error.message)
@@ -11,7 +11,7 @@ const addRecipesToDataBase = async(req,res)=>{
 }
 
 
-const getRecipe = async(req,res)=>{
+const getRecipe = async (req, res) => {
     try {
         const data = await Service.getRecipe()
         res.send(data)
@@ -20,33 +20,33 @@ const getRecipe = async(req,res)=>{
     }
 }
 
-const getRecipeByQuery = async(req,res)=>{
+const getRecipeByQuery = async (req, res) => {
     try {
-        const {name} = req.query
-        const data =  await Service.getRecipeByQuery({name})
+        const { name } = req.query
+        const data = await Service.getRecipeByQuery({ name })
         res.send(data)
     } catch (error) {
         console.log(error)
         res.send(error.message)
     }
-} 
+}
 
 
-const addRecipes = async(req,res)=>{
+const addRecipes = async (req, res) => {
     try {
-       
-        const {id,title,summary,image,readyInMinutes,servings,sourceUrl,instructions,ingredients} = req.body
-        const data = await Service.addRecipes({id,title,summary,image,readyInMinutes,servings,sourceUrl,instructions,ingredients})
+
+        const { id, title, summary, image, readyInMinutes, servings, sourceUrl, instructions, ingredients } = req.body
+        const data = await Service.addRecipes({ id, title, summary, image, readyInMinutes, servings, sourceUrl, instructions, ingredients })
         res.send(data)
     } catch (error) {
         res.send(error.message)
     }
 }
 
-const deleteRecipeById = async(req,res)=>{
+const deleteRecipeById = async (req, res) => {
     try {
-        const {id} = req.params
-        const data = await Service.deleteRecipeById({id})
+        const { id } = req.params
+        const data = await Service.deleteRecipeById({ id })
         res.send(data)
     } catch (error) {
         res.send(error.message)
@@ -54,12 +54,12 @@ const deleteRecipeById = async(req,res)=>{
 }
 
 
-const updateRecipe = async(req,res)=>{
+const updateRecipe = async (req, res) => {
     try {
         const body = req.body
-       const {id} = req.params 
-       const data = await Service.updateRecipe({id},{body}) 
-       res.send(data)       
+        const { id } = req.params
+        const data = await Service.updateRecipe({ id }, { body })
+        res.send(data)
     } catch (error) {
         res.send(error.message)
     }
